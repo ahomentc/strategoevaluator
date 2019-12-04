@@ -109,7 +109,7 @@ class BasicAI:
 		""" Implements Setup part of protocol. Always uses the same setup. Override to create custom setups """
 		#sys.stderr.write("BasicAI Setup here...\n");
 		setup = sys.stdin.readline().split(' ')
-		if len(setup) != 4:
+		if len(setup) < 4:
 			sys.stderr.write("BasicAI setup fails, expected 4 tokens, got " + str(len(setup)) + " "+str(setup) + "\n")
 		self.colour = setup[0]
 		self.opponentName = setup[1]
@@ -119,9 +119,7 @@ class BasicAI:
 			self.board.append([])
 			for y in range(0, self.height):		
 				self.board[x].append(None)
-		print(sys.argv[1][0:10] + "\n" + sys.argv[1][10:20] + "\n" +sys.argv[1][20:30] + "\n" +sys.argv[1][30:40]);
-                #if self.colour == "RED":
-		#	print("FB8sB479B8\nBB31555583\n6724898974\n967B669999")
+		print(sys.argv[1][0:10] + "\n" + sys.argv[1][10:20] + "\n" +sys.argv[1][20:30] + "\n" +sys.argv[1][30:40])
 		#elif self.colour == "BLUE":
 		#	print("967B669999\n6724898974\nBB31555583\nFB8sB479B8")
 		return True

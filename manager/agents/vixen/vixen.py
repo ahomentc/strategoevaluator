@@ -1,4 +1,4 @@
-#!/usr/bin/python -u
+#!/usr/bin/python3.6 -u
 
 #NOTE: The -u option is required for unbuffered stdin/stdout.
 #	If stdin/stdout are buffered, the manager program will not recieve any messages and assume that the agent has timed out.
@@ -32,13 +32,11 @@ class Vixen(BasicAI):
 		self.killScores = {'1' : 1.0 , '2' : 0.9 , '3' : 0.9 , '4' : 0.8, '5' : 0.8, '6' : 0.8, '7' : 0.8, '8' : 0.9 , '9' : 0.7, 's' : 1.0}	
 		self.riskScores = {'1' : -0.3, '2' : -0.3, '3' : 0.0, '4': 0.4, '5': 0.6, '6': 0.7, '7':0.8, '8': 0.0, '9' : 1.0, 's' : 0.1}
 
-
 	def Setup(self):
-		""" Implements Setup part of protocol. Always uses the same setup. Override to create custom setups """
 		#sys.stderr.write("BasicAI Setup here...\n");
 		setup = sys.stdin.readline().split(' ')
-		if len(setup) != 4:
-			sys.stderr.write("BasicAI setup fails, expected 4 tokens, got " + str(len(setup)) + " "+str(setup) + "\n")
+		if len(setup) < 4:
+			sys.stderr.write("BasicAI setup fails, expected at least 4 tokens, got " + str(len(setup)) + " "+str(setup) + "\n")
 		self.colour = setup[0]
 		self.opponentName = setup[1]
 		self.width = int(setup[2])
@@ -48,14 +46,12 @@ class Vixen(BasicAI):
 			for y in range(0, self.height):		
 				self.board[x].append(None)
 
-		#flagPosition = random.choice((
-		#fakeFlag = random.choice((
-		if self.colour == "RED":
-			print "FB8sB479B8\nBB31555583\n6724898974\n967B669999"
-		elif self.colour == "BLUE":
-			print "967B669999\n6724898974\nBB31555583\nFB8sB479B8"
+                #print(sys.argv[1][0:10] + "\n" + sys.argv[1][10:20] + "\n" +sys.argv[1][20:30] + "\n" +sys.argv[1][30:40])
+		print(sys.argv[1][0:10] + "\n" + sys.argv[1][10:20] + "\n" +sys.argv[1][20:30] + "\n" +sys.argv[1][30:40])
+#			print("FB8sB479B8\nBB31555583\n6724898974\n967B669999")
+#		elif self.colour == "BLUE":
+#			print("967B669999\n6724898974\nBB31555583\nFB8sB479B8")
 		return True
-			
 
 	def MakeMove(self):
 		#sys.stderr.write("Vixen MakingMove...\n")
@@ -79,7 +75,7 @@ class Vixen(BasicAI):
 
 				scores[path[0]] += self.CalculateScore(unit, target, path)
 
-			for d in scores.keys():
+			for d in list(scores):
 				if scores[d] == None:
 					del scores[d]
 
@@ -90,7 +86,7 @@ class Vixen(BasicAI):
 			
 
 		if len(moveList) <= 0:
-			print "NO_MOVE"
+			print("NO_MOVE")
 			return True
 
 		moveList.sort(key = lambda e : e["score"], reverse=True)
@@ -100,7 +96,7 @@ class Vixen(BasicAI):
 		#	return True
 
 		
-		print str(moveList[0]["unit"].x) + " " + str(moveList[0]["unit"].y) + " " + moveList[0]["direction"]
+		print(str(moveList[0]["unit"].x) + " " + str(moveList[0]["unit"].y) + " " + moveList[0]["direction"])
 		return True
 				
 			

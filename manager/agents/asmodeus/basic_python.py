@@ -131,15 +131,15 @@ class BasicAI:
             self.board.append([])
             for y in range(0, self.height):
                 self.board[x].append(None)
-        #print(sys.argv[1][0:10] + "\n" + sys.argv[1][10:20] + "\n" +sys.argv[1][20:30] + "\n" +sys.argv[1][30:40]);
-        if self.colour == "RED":
-            #print(sys.argv[1][0:10] + "\n" + sys.argv[1][10:20] + "\n" +sys.argv[1][20:30] + "\n" +sys.argv[1][30:40]);
-            #print("......8Fs9\n......B219\n..........\n..........")
-             print("FB8sB479B8\nBB31555583\n6724898974\n967B669999")
-        elif self.colour == "BLUE":
+        print(sys.argv[1][0:10] + "\n" + sys.argv[1][10:20] + "\n" +sys.argv[1][20:30] + "\n" +sys.argv[1][30:40]);
+       # if self.colour == "RED":
+         #   print(sys.argv[1][0:10] + "\n" + sys.argv[1][10:20] + "\n" +sys.argv[1][20:30] + "\n" +sys.argv[1][30:40]);
+       #     print("......8Fs9\n......B219\n..........\n..........")
+            # print("FB8sB479B8\nBB31555583\n6724898974\n967B669999")
+       # elif self.colour == "BLUE":
             #print(str(sys.argv[1]));
-           # print("1........s\n..2....B8.\n....F.9...\n....9.....")
-             print("967B669999\n6724898974\nBB31555583\nFB8sB479B8")
+       #     print("1........s\n..2....B8.\n....F.9...\n....9.....")
+            # print("967B669999\n6724898974\nBB31555583\nFB8sB479B8")
         return True
 
     def MoveCycle(self):

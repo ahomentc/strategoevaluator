@@ -1,4 +1,4 @@
-#!/usr/bin/python -u
+#!/usr/bin/python3.6 -u
 
 #NOTE: The -u option is required for unbuffered stdin/stdout.
 #	If stdin/stdout are buffered, the manager program will not recieve any messages and assume that the agent has timed out.
@@ -30,11 +30,10 @@ class Asmodeus(BasicAI):
 		self.suicideScores = {'1' : 0.0 , '2' : 0.0 , '3' : 0.0, '4' : 0.0, '5' : 0.0, '6' : 0.05, '7' : 0.1, '8' : 0.0 , '9' : 0.0, 's' : 0.0}
 		self.killScores = {'1' : 1.0 , '2' : 0.9 , '3' : 0.8 , '4' : 0.5, '5' : 0.5, '6' : 0.5, '7' : 0.4, '8' : 0.9 , '9' : 0.6, 's' : 0.9}	
 
-        def setup(self):
-		""" Implements Setup part of protocol. Always uses the same setup. Override to create custom setups """
+	def setup(self):
 		#sys.stderr.write("BasicAI Setup here...\n");
 		setup = sys.stdin.readline().split(' ')
-		if len(setup) != 4:
+		if len(setup) < 4:
 			sys.stderr.write("BasicAI setup fails, expected 4 tokens, got " + str(len(setup)) + " "+str(setup) + "\n")
 		self.colour = setup[0]
 		self.opponentName = setup[1]
@@ -44,10 +43,10 @@ class Asmodeus(BasicAI):
 			self.board.append([])
 			for y in range(0, self.height):		
 				self.board[x].append(None)
-		if self.colour == "RED":
-			print("FB8sB479B8\nBB31555583\n6724898974\n967B669999")
-		elif self.colour == "BLUE":
-			print("967B669999\n6724898974\nBB31555583\nFB8sB479B8")
+		print(sys.argv[1][0:10] + "\n" + sys.argv[1][10:20] + "\n" +sys.argv[1][20:30] + "\n" +sys.argv[1][30:40])
+#			print("FB8sB479B8\nBB31555583\n6724898974\n967B669999")
+#		elif self.colour == "BLUE":
+#			print("967B669999\n6724898974\nBB31555583\nFB8sB479B8")
 		return True
 
 	def MakeMove(self):
@@ -82,7 +81,7 @@ class Asmodeus(BasicAI):
 		moveList.sort(key = lambda e : e[len(e)-1], reverse=True)
 
 		#sys.stderr.write("Chosen move is: " + str(moveList[0][0].x) + " " + str(moveList[0][0].y) + " " + moveList[0][1][0] + " (targeting enemy with rank " + moveList[0][2].rank + " at position " + str(moveList[0][2].x) + " " + str(moveList[0][2].y) + " (my rank " + moveList[0][0].rank+")\n")
-		print str(moveList[0][0].x) + " " + str(moveList[0][0].y) + " " + moveList[0][1][0]
+		print(str(moveList[0][0].x) + " " + str(moveList[0][0].y) + " " + moveList[0][1][0])
 		return True	
 
 	def CalculateScore(self, attacker, defender):

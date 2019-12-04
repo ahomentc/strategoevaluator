@@ -500,6 +500,7 @@ MovementResult Game::Play()
 	red->Message("START");
 	
 	int moveCount = 0;
+	maxTurns = 5000;
 
 	while (!Board::HaltResult(result) && (turnCount < maxTurns || maxTurns < 0))
 	{

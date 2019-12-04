@@ -1,4 +1,4 @@
-#!/usr/bin/python -u
+#!/usr/bin/python3.6 -u
 
 #NOTE: The -u option is required for unbuffered stdin/stdout.
 #	If stdin/stdout are buffered, the manager program will not recieve any messages and assume that the agent has timed out.
@@ -253,7 +253,7 @@ class SulixAI:
 		""" Implements Setup part of protocol. Always uses the same setup. Override to create custom setups """
 		#sys.stderr.write("BasicAI Setup here...\n");
 		setup = sys.stdin.readline().split(' ')
-		if len(setup) != 4:
+		if len(setup) < 4:
 			sys.stderr.write("BasicAI setup fails, expected 4 tokens, got " + str(len(setup)) + " "+str(setup) + "\n")
 		self.colour = setup[0]
 		self.opponentName = setup[1]
@@ -263,10 +263,9 @@ class SulixAI:
 			self.board.append([])
 			for y in range(0, self.height):		
 				self.board[x].append(None)
-		if self.colour == "RED":
-			print "FB8sB979B8\nBB99555583\n6724898974\nB314676699"
-		elif self.colour == "BLUE":
-			print "B314676699\n6724898974\nBB99555583\nFB8sB979B8"
+		print(sys.argv[1][0:10] + "\n" + sys.argv[1][10:20] + "\n" +sys.argv[1][20:30] + "\n" +sys.argv[1][30:40])
+		#elif self.colour == "BLUE":
+		#	print("B314676699\n6724898974\nBB99555583\nFB8sB979B8")
 		return True
 
 	def MoveCycle(self):
@@ -321,7 +320,7 @@ class SulixAI:
 								scare = 999
 							elif override == -1:
 								piece.turnCount = 0
-								print str(piece.x) + " " + str(piece.y) + " " + directions[dirIndex]
+								print(str(piece.x) + " " + str(piece.y) + " " + directions[dirIndex])
 								return True
 
 
@@ -341,11 +340,11 @@ class SulixAI:
 			if startIndex == index:
 				if bestScare != 999:
 					bestpiece.turnCount = 0
-					print str(bestpiece.x) + " " + str(bestpiece.y) + " "+directions[bestdir]
+					print(str(bestpiece.x) + " " + str(bestpiece.y) + " "+directions[bestdir])
 #					bestpiece.debugPrintHeat(self.width, self.height)
 					return True
 				else:
-					print "SURRENDER"
+					print("SURRENDER")
 					return True
 							
 			

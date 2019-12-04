@@ -269,8 +269,8 @@ class Hunter(BasicAI):
 				
 		
 if __name__ == "__main__":
-	if len(sys.argv) > 1:
-		hunter = Hunter(sys.argv[1])
+	if len(sys.argv) > 2:
+		hunter = Hunter(sys.argv[2])
 	else:
 		string = ""
 		path = sys.argv[0].split('/')
